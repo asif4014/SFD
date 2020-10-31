@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- head definitions go here -->
+</head>
+
+<body>
+    <center>
+        <h1>Scholarship Details</h1>
+        <h2>Name:{{obj.name}}</h2>
+        <h2>Regd No:{{obj.regdno}}</h2>
+        <h2>Gender:{{obj.gender}}</h2>
+        <h2>DOB:{{obj.dob}}</h2>
+        <h2>Scholarship:{{obj.scholartype}}</h2>
+        <h2>Aadhar:{{obj.aadhar}}</h2>
+        <h2>Email:{{obj.email}}</h2>
+        <h2>Contact:{{obj.contact}}</h2>
+
+        <br><br>
+
+        <!-- <a href="{% url 'form' %}"> <input type="button" value="+Add New" /></a> -->
+    </center>
+</body>
+
+</html>

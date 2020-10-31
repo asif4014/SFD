@@ -1,0 +1,389 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="image/logo.png" type="image/jpg">
+	<title>SCIS,UOH</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css">
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="vendors/animate-css/animate.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Student Registration Form</title>
+	<meta name="Keyword content=" FillDetails">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+		function blockSpecialChar(e) {
+			var k;
+			document.all ? k = e.keyCode : k = e.which;
+			return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+		}
+		function isNumberKey(evt) {
+			var charCode = (evt.which) ? evt.which : event.keyCode
+			if (charCode > 31 && (charCode < 48 || charCode > 57))
+				return false;
+			return true;
+		}
+		function isAlphaOnly(e) {
+			var e = window.event || e
+			var keyunicode = e.charCode || e.keyCode
+			return (keyunicode >= 65 && keyunicode <= 122 || keyunicode == 8 || keyunicode == 32) ? true : false
+		}
+
+		function loadImg(event) {
+			var output = document.getElementById('photo');
+			output.src = URL.createObjectURL(event.target.files[0]);
+		}
+
+		function display_c() {
+			var refresh = 1000; // Refresh rate in milli seconds
+			mytime = setTimeout('newRefresh()', refresh)
+		}
+		function newRefresh() {
+			var x = new Date()
+			document.getElementById('ct').innerHTML = x;
+			display_c();
+		}
+
+
+
+
+		$(document).ready(function () {
+			$("select.regno").change(function () {
+				var selectedregno = $(".regno option:selected").val();
+				var selectedqualexam = $(".qualexam option:selected").val();
+				$.ajax({
+					type: "POST",
+					url: "reg.php",
+					data: { regno: selectedregno, qual: selectedqualexam }
+				}).done(function (data) {
+					$("#score").html(data);
+				});
+			});
+		});
+
+		$(function () {
+			$("#datepicker").datepicker();
+		});
+
+		function enableRegTextField() {
+			document.getElementById('regnoid').disabled = false;
+			document.getElementById('validateButton').disabled = false;
+			var k = document.forms["fillDetails"]["qualexam"].value;
+			document.getElementById("idrow9").style.display = '';
+			document.getElementById("idrow10").style.display = '';
+			var xmlhttp;
+			if (window.XMLHttpRequest) {  // code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			}
+			else {   // code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("course_display").innerHTML = this.responseText;
+				}
+			}
+			xmlhttp.open("GET", "course_display.php?q=" + k, true);  //Sending request to validate.php 
+			xmlhttp.send();
+		}
+	</script>
+	<style>
+		#img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		body {
+			padding: 25px;
+			background-color: #b8edff;
+			< !--background: url(Images/add.jpg);
+			background-repeat: no-repeat;
+			background-size: 1920px 1200px;
+			-->
+		}
+
+		.button {
+			border-radius: 4px;
+			background-color: #FFFFFF;
+			border: none;
+			color: #3e8e41;
+			text-align: center;
+			font-size: 18px;
+			padding: 20px;
+			width: 130px;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+		}
+
+		.button span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		.button span:after {
+			content: '\00bb';
+			position: absolute;
+			opacity: 0;
+			top: 0;
+			right: -20px;
+			transition: 0.5s;
+		}
+
+		.button:hover {
+			background-color: #52bf1c;
+			color: red;
+		}
+
+		.button:hover span {
+			padding-right: 25px;
+		}
+
+		.button:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		td {
+			color: #000000;
+		}
+
+		#reloadCaptcha {
+			display: inline-block;
+			padding: 8px 10px;
+			width: 120px;
+			font-size: 10px;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+			color: #fff;
+			background-color: #4CAF50;
+			border: none;
+			border-radius: 8px;
+			box-shadow: 0 3px #999;
+		}
+
+		#reloadCaptcha:hover {
+			background-color: #3e8e41
+		}
+
+		#reloadCaptcha:active {
+			background-color: #3e8e41;
+			box-shadow: 0 3px #666;
+			transform: translateY(4px);
+		}
+
+		#validateButton {
+			display: inline-block;
+			padding: 8px 10px;
+			font-size: 10px;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+			color: #fff;
+			background-color: #4CAF50;
+			border: none;
+			border-radius: 8px;
+			box-shadow: 0 3px #999;
+		}
+
+		#validateButton:hover {
+			background-color: #3e8e41
+		}
+
+		#validateButton:active {
+			background-color: #3e8e41;
+			box-shadow: 0 3px #666;
+			transform: translateY(4px);
+		}
+	</style>
+</head>
+
+<body onload="hiding_QE()">
+
+	<!--================ Start Header Menu Area =================-->
+	<div id="header">
+		<table style="width: 100%; background-color:#f48942;">
+			<tr>
+				<td>
+					<img src="{% static "scholarship/image/logo.png" %}" alt="My image" style="width: 120px">
+				</td>
+				<td style="font style:calibri; color:red; ">
+					<h1>University of Hyderabad<br /></h1>
+					<h2>Scholarship Portal</h2>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<!--================ End Header Menu Area =================-->
+
+	<br><br>
+	<h2>
+		<center>Scholarship Form</center>
+	</h2><br><br>
+
+
+	<div align="right" style="color: #268e15">
+		<span id='ct'></span>
+	</div>
+	<div align="center">
+
+		<form name="fillDetails" method="POST" action="{% url 'details' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table align="center" cellpadding="8">
+				<!----- Full Name ---------------------------------------------------------->
+				<tr id="idrow1">
+					<td>Full Name:</td>
+					<td><input type="text" name="name" placeholder="Full Name" maxlength="30" minlength="5"
+							onkeypress="return isAlphaOnly(event)" required /></td>
+				</tr>
+
+				<tr id="idrow1">
+					<td>Regd No:</td>
+					<td><input type="text" name="regdno" id="regdno" placeholder="Regd. No" required /></td>
+				</tr>
+
+				<!------------Father's Name--------------------------------------------------->
+				<!-- <tr id="idrow2">
+					<td> Guardian's Name:</td>
+					<td><input type="text" name="guard" minlength="5" placeholder="Guardian's Name"
+							onkeypress="return isAlphaOnly(event)" required /></td>
+				</tr> -->
+				<!----- Gender ----------------------------------------------------------->
+				<tr id="idrow7">
+					<td>Gender:</td>
+					<!-- <td>
+						<select class="qualexam" name="gender" onchange="enableRegTextField()">
+							<option value="">Select Gender</option>
+							<option value="gate">Male</option>
+							<option value="state">Female</option>
+							<option value="net">Others</option>
+						</select>
+					</td> -->
+					<td>
+						<input type="radio" name="Gender" value="Male" checked />Male
+						<input type="radio" name="Gender" value="Female" />Female
+						<input type="radio" name="Gender" value="Other" />Other
+					</td>
+				</tr>
+				<!-----------Date of Birth--------------------------------------------------------->
+				<tr id="idrow3">
+					<td> Date of Birth:</td>
+					<td><input type="date" name="dob" placeholder="DD/MM/YYYY" required /></td>
+				</tr>
+
+				<tr id="idrow4">
+					<td>Choose Scholarship Type:</td>
+					<td>
+						<select class="qualexam" name="scholartype" onchange="enableRegTextField()">
+							<option value="">Select Scholarship</option>
+							<option value="gate">GATE Scholarship</option>
+							<option value="state">State Scholarship</option>
+							<option value="net">NET Fellowship</option>
+						</select>
+					</td>
+				</tr>
+
+				<!-- <tr id="idrow8">
+					<td> Registration No/Certificate No:</td>
+					<td><input type="text" name="Doc_No" placeholder="Regd No/Certif No"
+							onkeypress="return isNumberKey(event)" required /></td>
+				</tr> -->
+
+				<!-- <tr id="idrow9">
+					<td>Score:</td>
+					<td><input type="text" name="Score" placeholder="Score" onkeypress="return isNumberKey(event)"
+							required /></td>
+				</tr> -->
+				<!-------------Adhar Number---------------------------------------------------->
+				<tr id="idrow5">
+					<td> Aadhar Number:</td>
+					<td><input type="text" maxlength="12" minlength="12" name="aadhar" id="aadhar"
+							placeholder="Aadhar Number" onkeypress="return isNumberKey(event)" required /></td>
+				</tr>
+				<!----- Email Id ---------------------------------------------------------->
+				<tr id="idrow6">
+					<td>Email Id:</td>
+					<td><input type="text" name="email" maxlength="100" placeholder="xyz@gmail.com" required /></td>
+				</tr>
+				<!----- Mobile Number ---------------------------------------------------------->
+				<tr id="idrow7">
+					<td>Contact Number:</td>
+					<td><input type="text" name="mobile" minlength="10" maxlength="10" placeholder="0123456789"
+							onkeypress="return isNumberKey(event)" required /></td>
+				</tr>
+				<!-- Examination Type -------------------------------------------->
+
+				<!-- choose qualified entrance exam ------------------------->
+
+				<!--- Enter registration number ------------------------->
+
+
+				<!----- Correspondence Address ---------------------------------------------------------->
+				<!-- <tr id="idrow10">
+					<td>Address:</td>
+					<td><textarea placeholder="Address" name="Address" cols="43" rows="5" required></textarea></td>
+				</tr> -->
+
+				<!-- <tr id="idrow11">
+					<td>Upload Document:</td>
+					<td><input type="file" accept="image/*" onchange="loadImg(event)" name="Photo" required>
+						<img id="photo" height="50px" width="50px" />
+					</td>
+				</tr> -->
+
+
+			</table>
+			<button class="button" id="button" type="submit" name="sbt" value='submit'><span>Submit</span></button>
+		</form>
+	</div>
+	<script>
+		$("#aadhar").focusout(function () {
+			$.ajax({
+				type: 'GET',
+				url: "{% url 'aadharcheck' %}",
+				data: {
+					'regdno': $("#regdno").val(),
+					'aadhar': $("#aadhar").val()
+
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.final == 1) {
+						alert("Sorry,You have already applied");
+
+						window.location.replace("{% url 'form' %}");
+					}
+
+				}
+
+			})
+
+		})
+
+	</script>
+</body>

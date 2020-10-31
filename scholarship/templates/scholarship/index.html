@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.jpg" type="image/jpg">
+    <title>SCIS,UOH</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'scholarship/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'scholarship/vendors/linericon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'scholarship/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'scholarship/vendors/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'scholarship/vendors/lightbox/simpleLightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'scholarship/vendors/nice-select/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'scholarship/vendors/animate-css/animate.css' %}">
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'scholarship/css/style.css' %}">
+</head>
+
+<body>
+
+    <!--================ Start Header Menu Area =================-->
+    <div id="header">
+        <table style="width: 100%; background-color:#f48942;">
+            <tr>
+                <td>
+                    <img src="{% static "scholarship/image/logo.png" %}" alt="My image" style="width: 120px">
+                </td>
+                <td style="font style:calibri; color:red; ">
+                    <h1>University of Hyderabad<br /></h1>
+                    <h2>Scholarship Portal</h2>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <img src="{% static "scholarship/image/Scholarship.jpg" %}" alt="My image" style="width: 100%; class="
+        img-thumbnail">
+    <style>
+        .button {
+            background-color: #000000;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 25px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button {
+            width: 25%;
+
+            border-radius: 50%;
+        }
+    </style>
+    <br>
+    <br>
+
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 col-sm-6 col-8 header-top-right">
+                    <a href="{% url 'login' %}" class="text-uppercase">Login</a>
+                    <a href="{% url 'registration' %}" class="text-uppercase">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <center>
+        <h1> Welcome to UOH Scholarship page</h1>
+    </center>
+</body>
+
+</html>

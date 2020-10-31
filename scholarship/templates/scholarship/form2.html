@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>SCIS,UOH</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'scholarship/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'scholarship/vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'scholarship/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'scholarship/vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'scholarship/vendors/lightbox/simpleLightbox.css' %}">
+	<link rel="stylesheet" href="{% static 'scholarship/vendors/nice-select/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'scholarship/vendors/animate-css/animate.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{% static 'scholarship/css/style.css' %}">
+</head>
+
+<body>
+	<div id="main">
+		<!--================ Start Header Menu Area =================-->
+
+		<div id="header">
+			<table style="width: 100%; background-color:#f48942;">
+				<tr>
+					<td>
+						<img src="{% static "scholarship/image/logo.png" %}" alt="My image" style="width: 120px">
+					</td>
+					<td style="font style:calibri; color:red; ">
+						<h1>University of Hyderabad<br /></h1>
+						<h2>Scholarship Portal</h2>
+					</td>
+				</tr>
+			</table><br><br>
+
+			{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+					{% endfor %}
+			</ul>
+			{% endif %}
+
+			<h2>
+				<center>View Form</center>
+			</h2><br>
+
+
+
+
+			<div class="row">
+				<div class="col-lg-2 col-md-2">
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<form name="form1" action="{% url 'show' %}" method="POST">
+						{% csrf_token %}
+						<div class="mt-10">
+							<input type="text" name="regdno" placeholder="Regd No." onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'User Name'" required class="single-input">
+						</div>
+
+						<div class="mt-10">
+							DOB: &nbsp; <input type="date" name="dob">
+						</div>
+
+						<div class="button-group-area mt-40">
+							<input type="submit" class="genric-btn success circle" style="#4280f4;" name="sbt"
+								value="Login">
+
+
+						</div>
+					</form>
+				</div>
+			</div>
+			<br>
+			<br>
+
+			<!--Footer Class-->
+
+
+		</div>
+</body>
+
+</html>
